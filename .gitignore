@@ -1,0 +1,32 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific ignores (pentru compatibilitate)
+import/
+export.cfg
+export_presets.cfg
+
+# C# / .NET build artifacts (FOARTE IMPORTANTE)
+.mono/
+bin/
+obj/
+
+# Visual Studio & Rider cache/user files
+.vs/
+.idea/
+*.csproj.user
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
