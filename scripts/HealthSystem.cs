@@ -25,7 +25,7 @@ public partial class HealthSystem : Node
     [Signal] public delegate void HealthChangedEventHandler(int currentHealth, int maxHealth);
     [Signal] public delegate void DiedEventHandler();
 
-    public override void Ready()
+    public override void _Ready()
     {
         currentHealth = maxHealth;
 

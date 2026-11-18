@@ -7,7 +7,7 @@ public partial class FloatingText : Node2D
 {
     private Label label;
 
-    public override void Ready()
+    public override void _Ready()
     {
         label = GetNode<Label>("Label");
     }

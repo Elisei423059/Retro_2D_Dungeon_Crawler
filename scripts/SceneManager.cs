@@ -11,7 +11,7 @@ public partial class SceneManager : Node
     [Export] public int Score { get; private set; } = 0;
     [Export] private AnimationPlayer animationPlayer; // Reference to the screen-fade AnimationPlayer
 
-    public override void EnterTree()
+    public override void _EnterTree()
     {
         // Enforce Singleton pattern
         if (Instance != null && Instance != this)

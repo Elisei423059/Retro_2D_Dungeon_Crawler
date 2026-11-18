@@ -29,7 +29,7 @@ public partial class LoadingScreen : Control
         }
     }
 
-    public override void Process(double delta)
+    public override void _Process(double delta)
     {
         if (!isLoading) return;
 

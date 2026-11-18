@@ -7,7 +7,7 @@ public partial class SwordHitbox : Area2D
 {
     [Export] private int damageAmount = 35; // Damage dealt per successful hit
 
-    public override void Ready()
+    public override void _Ready()
     {
         // Listen for physics bodies entering the hitbox area
         BodyEntered += OnBodyEntered;

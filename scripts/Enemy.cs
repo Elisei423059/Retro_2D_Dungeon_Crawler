@@ -7,7 +7,7 @@ public partial class Enemy : CharacterBody2D
 {
     [ExportGroup("Enemy Stats")]
     [Export] private int maxHealth = 100;
-    [Export] private float speed = 150.0f;
+    [Export] private float speed = 40.0f;
     [Export] private float knockbackForce = 400.0f;    // Impulse strength when hit
     [Export] private float knockbackDuration = 0.2f;  // Duration of stun/knockback state in seconds
 
@@ -24,7 +24,7 @@ public partial class Enemy : CharacterBody2D
     // Preload the floating damage number scene for instant instantiation during combat
     private readonly PackedScene floatingTextScene = GD.Load<PackedScene>("res://scenes/FloatingText.tscn");
 
-    public override void Ready()
+    public override void _Ready()
     {
         currentHealth = maxHealth;
         
@@ -35,9 +35,10 @@ public partial class Enemy : CharacterBody2D
         sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
-    public override void PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Velocity;
+        Vector2 direction = Vector2.Right; // Default direction for wall collision response
 
         // If currently knocked back, override normal AI movement with knockback velocity
         if (knockbackTimer > 0)
@@ -50,7 +51,7 @@ public partial class Enemy : CharacterBody2D
             // Normal AI behavior: move directly toward the player's global position
             if (player != null)
             {
-                Vector2 direction = GlobalPosition.DirectionTo(player.GlobalPosition);
+                direction = GlobalPosition.DirectionTo(player.GlobalPosition);
                 velocity = direction * speed;
             }
             else
@@ -60,7 +61,14 @@ public partial class Enemy : CharacterBody2D
         }
 
         Velocity = velocity;
+
         MoveAndSlide();
+
+        // If it hits a wall, it changes direction.
+        if (IsOnWall())
+        {
+            direction *= -1;
+        }
     }
 
     /// <summary>

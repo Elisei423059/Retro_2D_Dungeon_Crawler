@@ -7,7 +7,7 @@ public partial class SpikeTrap : Area2D
 {
     [Export] private int damageAmount = 25; // Damage inflicted upon stepping on the trap
 
-    public override void Ready()
+    public override void _Ready()
     {
         BodyEntered += OnBodyEntered;
     }

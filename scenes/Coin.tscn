@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://s702g1302wpn"]
+
+[ext_resource type="Script" uid="uid://hyha5y38j6kf" path="res://scripts/Collectible.cs" id="1_owubc"]
+[ext_resource type="Texture2D" uid="uid://cogafxpiwvkmn" path="res://assets/kenney_tiny-dungeon/Tiles/coin.png" id="2_kyq3r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_owubc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owubc"]
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_owubc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.943394, 0.943394, 2.31028e-06, 1)
+material = SubResource("CanvasItemMaterial_owubc")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_kyq3r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_owubc")

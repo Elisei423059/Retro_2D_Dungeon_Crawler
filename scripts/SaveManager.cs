@@ -13,7 +13,7 @@ public partial class SaveManager : Node
     // Virtual user path mapped to the OS-specific AppData/Application Support directory
     private readonly string saveFilePath = "user://savegame.json";
 
-    public override void EnterTree()
+    public override void _EnterTree()
     {
         // Enforce Singleton pattern across scene transitions
         if (Instance != null && Instance != this)

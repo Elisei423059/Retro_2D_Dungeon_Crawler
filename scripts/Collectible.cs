@@ -5,27 +5,32 @@ using Godot;
 /// </summary>
 public partial class Collectible : Area2D
 {
-    [Export] private int pointValue = 10; // Score awarded upon collection
+	[Export] private int pointValue = 10; // Score awarded upon collection
 
-    public override void Ready()
-    {
-        // Subscribe to body collision signal
-        BodyEntered += OnCollectibleBodyEntered;
-    }
+    private bool _collected = false;
 
-    /// <summary>
-    /// Checks if the colliding body is the player, updates global score, and removes the item.
-    /// </summary>
-    private void OnCollectibleBodyEntered(Node2D body)
-    {
-        if (body.Name == "Player" || body.IsInGroup("Player"))
+    public override void _Ready()
+	{
+		// Subscribe to body collision signal
+		BodyEntered += OnCollectibleBodyEntered;
+	}
+
+	/// <summary>
+	/// Checks if the colliding body is the player, updates global score, and removes the item.
+	/// </summary>
+	private void OnCollectibleBodyEntered(Node2D body)
+	{
+        // We check if the one who entered the coin is the Player
+        if ((body.Name == "Player" || body.IsInGroup("Player")) && (!_collected))
         {
-            // Forward points to the global SceneManager singleton if available
-            SceneManager.Instance?.AddScore(pointValue);
-            GD.Print($"Item collected! Points added: {pointValue}");
+			_collected = true;
 
-            // Remove the collectible from the scene tree
-            QueueFree();
-        }
-    }
+			// Forward points to the global SceneManager singleton if available
+			SceneManager.Instance?.AddScore(pointValue);
+			GD.Print($"Item collected! Points added: {pointValue}");
+
+			// Remove the collectible from the scene tree
+			QueueFree();
+		}
+	}
 }

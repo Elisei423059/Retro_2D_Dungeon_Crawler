@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://7030ab3nu3q8"]
+
+[ext_resource type="Script" uid="uid://xigvef8fa4ov" path="res://scripts/Enemy.cs" id="1_3gvst"]
+[ext_resource type="Texture2D" uid="uid://bjabx3an5oyfd" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0109.png" id="2_55jtl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gvst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_55jtl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
+radius = 9.0
+height = 20.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_3gvst")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3gvst")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
